@@ -16,7 +16,7 @@ def init_db(app):
     with app.app_context():
         db = get_db()
         cursor = db.cursor()
-        # telefon yerine email sütunu eklendi
+        
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS leads (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,7 +32,7 @@ def lead_ekle(isim, email, mesaj=""):
     """Yeni kayıt ekler"""
     db = get_db()
     cursor = db.cursor()
-    # Güvenli SQL sorgusu
+    
     cursor.execute(
         'INSERT INTO leads (isim, email, mesaj) VALUES (?, ?, ?)',
         (isim, email, mesaj)
