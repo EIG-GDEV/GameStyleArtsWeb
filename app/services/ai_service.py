@@ -53,7 +53,7 @@ class AIService:
                 messages=messages,
                 model=self.model,
                 temperature=0.7,
-                max_tokens=1024
+                max_tokens=512  # Burayı 512 yaptık!
             )
             return chat_completion.choices[0].message.content
             
