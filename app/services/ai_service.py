@@ -11,7 +11,7 @@ class AIService:
         
         self.config = config_dict['default']
         self.api_key = os.environ.get("GROQ_API_KEY")
-        self.api_url = "https://api.groq.com/openai/v1/chat/completions"
+        self.api_url = "https://api.groq.com/v1/chat/completions"
         self.model = "llama-3.1-8b-instant"
 
     def _get_system_prompt(self):
