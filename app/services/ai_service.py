@@ -9,7 +9,7 @@ class AIService:
     def __init__(self):
         self.config = config_dict['default']
         self.api_key = os.environ.get("GROQ_API_KEY")
-        self.model = "llama3-8b-8192"
+        self.model = "llama-3.1-8b-instant"
         
         
         if self.api_key:
