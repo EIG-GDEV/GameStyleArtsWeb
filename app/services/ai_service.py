@@ -12,30 +12,30 @@ class AIService:
         self.client = Groq(api_key=self.api_key) if self.api_key else None
 
     def _get_system_prompt(self):
-        return self.config.BUSINESS_CONTEXT
+        ek_kural = "\n\nÖNEMLİ KURAL: Yanıtlarını kısa, öz ve net tut (Maksimum 3-4 cümle veya 150 kelime). Cümlelerini mutlaka tamamla ve sözünü asla yarıda bırakma."
+        return self.config.BUSINESS_CONTEXT + ek_kural
 
     def yanit_uret(self, mesaj, gecmis=None):
         if not self.client:
             return "DEMO MODU: API anahtarı ayarlanmamış."
 
         try:
-            # 1. API anahtarının yetkili olduğu TÜM modelleri çek
-            model_ids = [m.id for m in self.client.models.list().data]
             
-            # 2. Sadece ses ve koruma kalkanı modellerini filtrele (Geriye saf metin modelleri kalsın)
+            model_ids = [m.id for m in self.client.models.list().data]
+
             yasakli = ['guard', 'whisper', 'compound', 'safeguard', 'vision']
             chat_models = [m for m in model_ids if not any(y in m.lower() for y in yasakli)]
             
             if not chat_models:
                 return "Hata: Hesabınızda kullanılabilecek bir metin modeli bulunamadı."
 
-            # 3. İsteği hazırla
+        
             messages = [{"role": "system", "content": self._get_system_prompt()}]
             if gecmis:
                 messages.extend(gecmis)
             messages.append({"role": "user", "content": mesaj})
 
-            # 4. YIKILMAZ DÖNGÜ: Listede kalan tüm modelleri başarıya ulaşana kadar sırayla dene!
+            
             last_error = None
             for model_adi in chat_models:
                 try:
@@ -48,7 +48,7 @@ class AIService:
                     return chat_completion.choices[0].message.content
                 except Exception as e:
                     last_error = e
-                    continue # Bu model hata verdiyse çökme, sıradakine geç!
+                    continue 
             
             raise AIServiceError(f"Hiçbir model yanıt vermedi. Son hata: {last_error}")
             
