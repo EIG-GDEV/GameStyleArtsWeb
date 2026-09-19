@@ -15,7 +15,7 @@ Bu backend sistemi iki temel işlevi yerine getirmektedir:
 * Deployment: Render
 
 ## Projeyi Lokal Olarak Çalıştırma
-Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
+Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımı izleyin:
 
 1. Depoyu klonlayın:
    ```bash
