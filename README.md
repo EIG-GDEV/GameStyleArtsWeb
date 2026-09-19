@@ -17,6 +17,10 @@ Bu backend sistemi iki temel işlevi yerine getirmektedir:
 ## Projeyi Lokal Olarak Çalıştırma
 Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımı izleyin:
 
-1. Depoyu klonlayın:
-   ```bash
-   git clone [GITHUB_REPO_LINKIN]
+1. Kodu bilgisayara indirme (git clone)
+
+2. Kütüphaneleri kurma (pip install -r requirements.txt)
+
+3. İçine kendi Groq anahtarını koyacağı .env dosyasını oluşturma
+
+4. Kodu ayağa kaldırma (python run.py)
